@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki Doğdun Zehra ❤️</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#374151,#1e293b,#0f172a);
+    background-size:400% 400%;
+    animation:gradientMove 15s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    position:relative;
+}
+@keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* Yıldızlar */
+.stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+}
+.star{
+    position:absolute;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite;
+}
+@keyframes twinkle{
+    0%, 100%{opacity:0.3; transform:scale(1)}
+    50%{opacity:1; transform:scale(1.3)}
+}
+
+.container{
+    text-align:center;
+    padding:40px 35px;
+    z-index:2;
+    max-width:700px;
+    background:rgba(30,41,59,0.7);
+    backdrop-filter:blur(15px);
+    border-radius:30px;
+    border:2px solid rgba(255,126,179,0.3);
+    box-shadow:0 25px 70px rgba(255,126,179,0.4);
+    animation:containerFloat 1s ease-out;
+}
+@keyframes containerFloat{
+    from{opacity:0; transform:translateY(-50px) scale(0.9)}
+    to{opacity:1; transform:translateY(0) scale(1)}
+}
+
+h1{
+    color:#ff7eb3;
+    margin-bottom:15px;
+    font-size:2.7rem;
+    text-shadow:0 0 30px rgba(255,126,179,0.7);
+    animation:titleGlow 2.5s ease-in-out infinite;
+}
+@keyframes titleGlow{
+    0%, 100%{text-shadow:0 0 30px rgba(255,126,179,0.7)}
+    50%{text-shadow:0 0 50px rgba(255,126,179,1), 0 0 60px rgba(255,77,141,0.9)}
+}
+
+p{
+    color:#e2e8f0;
+    line-height:1.9;
+    font-size:1.15rem;
+    text-shadow:0 2px 6px rgba(0,0,0,0.4);
+}
+
+button{
+    margin-top:30px;
+    padding:18px 40px;
+    border:none;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ff4d8d,#ff7eb3,#ffb3cf);
+    background-size:200% 200%;
+    color:white;
+    cursor:pointer;
+    font-size:1.15rem;
+    font-weight:700;
+    transition:all 0.4s ease;
+    box-shadow:0 12px 30px rgba(255,77,141,0.5);
+    position:relative;
+    overflow:hidden;
+    animation:buttonPulse 2s infinite;
+}
+@keyframes buttonPulse{
+    0%, 100%{box-shadow:0 12px 30px rgba(255,77,141,0.5)}
+    50%{box-shadow:0 15px 40px rgba(255,77,141,0.8)}
+}
+button::before{
+    content:'';
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:0;
+    height:0;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4);
+    transform:translate(-50%,-50%);
+    transition:width 0.6s, height 0.6s;
+}
+button:hover::before{
+    width:350px;
+    height:350px;
+}
+button:hover{
+    transform:scale(1.1) translateY(-3px);
+    background-position:100% 0;
+}
+button:active{
+    transform:scale(0.95);
+}
+
+.btn-yes{
+    background:linear-gradient(135deg,#ff4d8d,#ff7eb3) !important;
+}
+.btn-no{
+    background:linear-gradient(135deg,#64748b,#475569) !important;
+    box-shadow:0 12px 30px rgba(0,0,0,0.3) !important;
+    animation:none !important;
+}
+.buttons{
+    display:flex;
+    gap:25px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.hidden-message{
+    opacity:0;
+    transform:translateY(40px) scale(0.9);
+    transition:all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-top:45px;
+    padding:30px;
+    background:rgba(15,23,42,0.5);
+    border-radius:25px;
+    border:2px solid rgba(255,126,179,0.3);
+}
+.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+}
+
+.result{
+    margin-top:30px;
+    color:#ffb3cf;
+    font-size:1.25rem;
+    text-shadow:0 0 15px rgba(255,179,207,0.6);
+    line-height:1.7;
+}
+
+.symbol{
+    position:fixed;
+    animation:fall linear forwards;
+    user-select:none;
+    pointer-events:none;
+    filter:drop-shadow(0 0 8px currentColor);
+    z-index:1;
+}
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+.confetti{
+    position:fixed;
+    pointer-events:none;
+    z-index:999;
+    animation:confettiFall 3s linear forwards;
+}
+@keyframes confettiFall{
+    to{
+        transform:translateY(100vh) rotate(1080deg);
+        opacity:0;
+    }
+}
+
+.heart-burst{
+    position:fixed;
+    pointer-events:none;
+    font-size:35px;
+    animation:burst 1.2s ease-out forwards;
+    z-index:999;
+}
+@keyframes burst{
+    0%{
+        transform:translate(-50%,-50%) scale(0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translate(-50%,-50%) scale(4) rotate(180deg);
+        opacity:0;
+    }
+}
+
+.page{ display:none; }
+.page.active{ display:block; }
+
+@media(max-width:650px){
+    h1{font-size:2rem}
+    p{font-size:1rem}
+    .container{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<!-- SAYFA 1: DOĞUM GÜNÜ MESAJI -->
+<div class="container page active" id="birthdayPage">
+    <h1>🎂 İyi ki Doğdun 🎂</h1>
+    <h1>❤️ İyi ki Varsın ❤️</h1>
+    <p>
+        Bugün senin günün ve umarım
+        yüzündeki gülümseme hiç eksik olmaz ❤️
+        <br><br>
+        <strong style="color:#ffb3cf;">Her anın özel, her dakikan muhteşem olsun!</strong>
+    </p>
+    <button onclick="showMessage()" id="mainBtn">
+        ✨ Özel Mesajı Aç ✨
+    </button>
+
+    <div class="hidden-message" id="message">
+        <h1 style="font-size:2.2rem;">
+            💕 Sana Bir Şey Söylemek İstiyorum 💕
+        </h1>
+        <p>
+            Belki biraz klasik olacak ama
+            tanıdığım için gerçekten sevindiğim
+            nadir kişilerden birisin.
+            <br><br>
+            <strong style="color:#ffd6e8;">İyi ki varsın ve iyi ki doğdun! ❤️❤️</strong>
+        </p>
+
+        <button onclick="goToMainPage()" style="margin-top:35px;">
+            💌 Devam Et 💌
+        </button>
+    </div>
+</div>
+
+<!-- SAYFA 2: BULUŞMA SORUSU -->
+<div class="container page" id="mainPage">
+    <h1>💖 Müsait Olunca Buluşalım Mı? 💖</h1>
+    <p>
+        Sana küçük bir şey aldım 🎁
+        <br>
+        
+    </p>
+    <div class="buttons">
+        <button class="btn-yes" onclick="sendAnswer('EVET')">
+            Evet
+        </button>
+        <button class="btn-no" onclick="sendAnswer('HAYIR')">
+            Hayır
+        </button>
+    </div>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+
+// ===== TELEGRAM =====
+const BOT_TOKEN="8901104882:AAHB22peLkAc8GZ38OBQE1EgE70NArgKqYA";
+const CHAT_ID="7119081967";
+async function sendTelegram(message){
+ try{
+  await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({chat_id:CHAT_ID,text:message})
+  });
+ }catch(e){console.log(e);}
+}
+
+// Yıldızları oluştur
+function createStars(){
+    const starsContainer = document.getElementById('stars');
+    for(let i = 0; i < 120; i++){
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = Math.random() * 3 + 1 + 'px';
+        star.style.height = star.style.width;
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        starsContainer.appendChild(star);
+    }
+}
+createStars();
+
+function showPage(id){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+// SAYFA 1: MESAJI GÖSTER
+function showMessage(){
+    const messageDiv = document.getElementById("message");
+    const btn = document.getElementById("mainBtn");
+
+    messageDiv.classList.add("show");
+    sendTelegram('🎂 Zehra doğum günü mesajını açtı.');
+    btn.style.display = 'none';
+
+    createConfetti(80);
+
+    if(navigator.vibrate){
+        navigator.vibrate([100, 50, 100, 50, 200]);
+    }
+}
+
+function goToMainPage(){
+    createConfetti(60);
+
+    if(navigator.vibrate){
+        navigator.vibrate([100, 50, 100]);
+    }
+
+    showPage('mainPage');
+    sendTelegram('➡️ Zehra ikinci sayfaya geçti.');
+}
+
+// SAYFA 2: CEVAP
+function sendAnswer(answer){
+    const resultDiv = document.getElementById("result");
+    const buttons = document.querySelector('#mainPage .buttons');
+
+    if(answer === 'EVET'){
+        sendTelegram('❤️​ Zehra EVET dedi.');
+        resultDiv.innerHTML =
+        "🎉 <strong>Harika!</strong> 🎉<br><br>" +
+        "O zaman sana birazdan yazıyorum. 😊";
+
+        for(let i=0; i<80; i++){
+            setTimeout(()=> createHeart(), i * 40);
+        }
+        createConfetti(60);
+
+        if(navigator.vibrate){
+            navigator.vibrate([100, 50, 100, 50, 200]);
+        }
+    } else {
+        sendTelegram('❤️‍🩹 Zehra HAYIR dedi.');
+        resultDiv.innerHTML =
+        "Anladım...<br>" +
+        "Belki başka zaman olur";
+    }
+
+    buttons.style.display = 'none';
+}
+
+// KALP OLUŞTUR
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("symbol");
+
+    const hearts = ["❤️","💕","💖","💗","💓","💝"];
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 30 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+    setTimeout(()=> heart.remove(), 6000);
+}
+
+// KONFETİ OLUŞTUR
+function createConfetti(count){
+    const colors = ['#ff4d8d','#ff7eb3','#ffb3cf','#ffd6e8','#a78bfa','#c084fc','#f472b6'];
+    const shapes = ['●','■','▲','★','♥','Z'];
+
+    for(let i = 0; i < count; i++){
+        setTimeout(()=>{
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-20px';
+            confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            confetti.style.animationDelay = Math.random() * 0.3 + 's';
+            confetti.style.animationDuration = (Math.random() * 2 + 2.5) + 's';
+            document.body.appendChild(confetti);
+            setTimeout(()=> confetti.remove(), 5000);
+        }, i * 25);
+    }
+}
+
+// SEMBOL YAĞMURU (arka plan ambiyansı)
+function createSymbol(){
+    const symbol = document.createElement("div");
+    symbol.classList.add("symbol");
+    const symbols = ["❤️","💕","🎂","🎉","✨","💖","🌟","⭐","Z","🎁","🎈","💝"];
+    const selected = symbols[Math.floor(Math.random() * symbols.length)];
+    symbol.innerHTML = selected;
+    symbol.style.left = Math.random() * 100 + "vw";
+    symbol.style.fontSize = (Math.random() * 30 + 20) + "px";
+    symbol.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    const colors = ["#ff4d8d","#ff7eb3","#ffb3cf","#ffd6e8","#f472b6"];
+    symbol.style.color = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(symbol);
+    setTimeout(()=> symbol.remove(), 10000);
+}
+setInterval(createSymbol, 500);
+
+// Tıklama efekti
+document.addEventListener('click', function(e){
+    if(e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT'){
+        const hearts = ['💖','💗','💓','💕','❤️','✨'];
+        const heart = document.createElement('div');
+        heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.classList.add('heart-burst');
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        document.body.appendChild(heart);
+        setTimeout(()=> heart.remove(), 1200);
+    }
+});
+
+// Fare hareketi efekti
+document.addEventListener('mousemove', function(e){
+    if(Math.random() > 0.96){
+        const sparkle = document.createElement('div');
+        sparkle.innerHTML = '✨';
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top = e.clientY + 'px';
+        sparkle.style.fontSize = '20px';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.animation = 'burst 0.8s ease-out forwards';
+        sparkle.style.zIndex = '999';
+        document.body.appendChild(sparkle);
+        setTimeout(()=> sparkle.remove(), 800);
+    }
+});
+</script>
+
+</body>
+</html>
